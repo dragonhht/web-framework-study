@@ -7,11 +7,7 @@
   <groupId>com.github.dragonhht</groupId>
   <artifactId>simple-web</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>../s</module>
-  </modules>
-  <packaging>pom</packaging>
-
+  <packaging>war</packaging>
   <name>simple-web Maven Webapp</name>
 
   <properties>
@@ -40,6 +36,20 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
       <scope>runtime</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
     </dependency>
   </dependencies>
 
