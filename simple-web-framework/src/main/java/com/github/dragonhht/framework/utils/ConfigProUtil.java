@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * 读取properties文件的类.
  */
-public class ConfigProUtil {
+public final class ConfigProUtil {
 
     /** 配置文件. */
     private Properties properties = new Properties();

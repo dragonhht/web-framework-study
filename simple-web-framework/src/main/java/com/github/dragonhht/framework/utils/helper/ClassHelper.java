@@ -13,7 +13,7 @@ import java.util.Set;
  * @author: huang
  * @Date: 2018-12-28
  */
-public class ClassHelper {
+public final class ClassHelper {
 
     /** 用于存放所加载的类. */
     private static final Set<Class<?>> CLASS_SET;

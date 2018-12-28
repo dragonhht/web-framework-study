@@ -20,7 +20,7 @@ import java.util.jar.JarFile;
  * @Date: 2018-12-28
  */
 @Slf4j
-public class ClassUtil {
+public final class ClassUtil {
 
     /**
      * 获取类加载器.

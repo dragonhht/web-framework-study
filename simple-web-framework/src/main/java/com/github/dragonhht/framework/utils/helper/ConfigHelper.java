@@ -12,7 +12,7 @@ import java.io.IOException;
  * @Date: 2018-12-28
  */
 @Slf4j
-public class ConfigHelper {
+public final class ConfigHelper {
 
     private static final ConfigProUtil CONFIG;
 
