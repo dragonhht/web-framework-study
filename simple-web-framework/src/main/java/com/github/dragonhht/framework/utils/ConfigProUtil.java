@@ -1,24 +1,24 @@
 package com.github.dragonhht.framework.utils;
 
 import com.github.dragonhht.framework.exception.NotLoadFileException;
-import com.sun.istack.internal.Nullable;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
- * 读取properties文件的类.
+ * properties工具类.
+ * User: huang
+ * Date: 18-12-30
  */
-public final class ConfigProUtil {
+public class ConfigProUtil {
 
-    /** 配置文件. */
     private Properties properties = new Properties();
 
-    public ConfigProUtil(String propertiePath) throws IOException {
-        this.properties.load(new FileInputStream(new File(propertiePath)));
-    }
-
-    public ConfigProUtil() {
+    public ConfigProUtil(String propertiesPath) throws IOException {
+        this.properties.load(new FileInputStream(new File(propertiesPath)));
     }
 
     /**
@@ -47,7 +47,8 @@ public final class ConfigProUtil {
      * @param description 描述
      * @throws IOException
      */
-    public void store(String path, @Nullable String description) throws IOException {
+    public void store(String path, String description) throws IOException {
         this.properties.store(new FileOutputStream(new File(path)), description);
     }
+
 }

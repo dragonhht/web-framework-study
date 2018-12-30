@@ -1,13 +1,11 @@
 package com.github.dragonhht.web.servlet;
 
+import com.github.dragonhht.framework.annotation.Autowired;
+import com.github.dragonhht.framework.annotation.Controller;
+import com.github.dragonhht.framework.annotation.RequestMapping;
+import com.github.dragonhht.framework.bean.Param;
+import com.github.dragonhht.framework.bean.View;
 import com.github.dragonhht.web.service.HelloService;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * 描述.
@@ -15,14 +13,16 @@ import java.io.IOException;
  * @author: huang
  * @Date: 18-12-17
  */
-@WebServlet("/hello")
-public class HelloServlet extends HttpServlet {
+@Controller
+public class HelloServlet {
 
-    private HelloService service = new HelloService();
+    @Autowired
+    private HelloService service;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(value = "/hello")
+    public View Hello(Param param) {
         System.out.println(service.getTime());
-        req.getRequestDispatcher("/WEB-INF/jsp/hello.jsp").forward(req, resp);
+        View view = new View("hello.jsp");
+        return view;
     }
 }

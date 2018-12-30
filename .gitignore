@@ -2,3 +2,5 @@
 */.idea/
 */target/
 *.iml
+.attach_pid*
+*/.attach_pid*

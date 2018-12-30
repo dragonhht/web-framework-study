@@ -1,6 +1,6 @@
 package com.github.dragonhht.framework.utils.helper;
 
-import com.github.dragonhht.framework.utils.ConfigProUtil;
+import com.github.dragonhht.framework.utils.ConfigProReaderUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -14,12 +14,12 @@ import java.io.IOException;
 @Slf4j
 public final class ConfigHelper {
 
-    private static final ConfigProUtil CONFIG;
+    private static final ConfigProReaderUtil CONFIG;
 
     static {
-        ConfigProUtil CONFIG_NEW;
+        ConfigProReaderUtil CONFIG_NEW;
         try {
-            CONFIG_NEW = new ConfigProUtil("simple.properties");
+            CONFIG_NEW = new ConfigProReaderUtil("simple");
         } catch (IOException e) {
             CONFIG_NEW = null;
             log.error("获取配置文件失败", e);

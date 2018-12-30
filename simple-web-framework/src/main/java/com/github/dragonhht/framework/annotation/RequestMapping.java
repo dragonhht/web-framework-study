@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
  * @author: huang
  * @Date: 2018-12-28
  */
-// TODO 暂时支持GET请求
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestMapping {
@@ -21,5 +20,7 @@ public @interface RequestMapping {
      * @return
      */
     String value();
+
+    String method() default "get";
 
 }
