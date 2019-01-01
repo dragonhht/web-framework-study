@@ -18,7 +18,6 @@ public final class ReflectionUtil {
     /**
      * 创建实例.
      * @param cls
-     * @param <T>
      * @return
      */
     public static Object newInstance(Class<?> cls) {

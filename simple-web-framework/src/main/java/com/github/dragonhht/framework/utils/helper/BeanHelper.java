@@ -40,11 +40,21 @@ public final class BeanHelper {
      * @param <T>
      * @return
      */
+    @SuppressWarnings("unchecked")
     public static <T> T getBean(Class<T> cls) {
         if (!BEAN_MAP.containsKey(cls)) {
             throw new RuntimeException("获取的类实例不存在!");
         }
         return (T) BEAN_MAP.get(cls);
+    }
+
+    /**
+     * 将实例放入容器.
+     * @param cls 类
+     * @param obj 类的实例
+     */
+    public static void setBean(Class<?> cls, Object obj) {
+        BEAN_MAP.put(cls, obj);
     }
 
 }

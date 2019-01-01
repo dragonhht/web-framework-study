@@ -4,6 +4,7 @@ import com.github.dragonhht.framework.annotation.Controller;
 import com.github.dragonhht.framework.annotation.Service;
 import com.github.dragonhht.framework.utils.ClassUtil;
 
+import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -68,6 +69,37 @@ public final class ClassHelper {
         classSet.addAll(getControllerClasses());
         classSet.addAll(getServiceClasses());
         return classSet;
+    }
+
+    /**
+     * 获取基础包下某父类的所有子类.
+     * @param superClass
+     * @return
+     */
+    public static Set<Class<?>> getClassesBySyper(Class<?> superClass) {
+        Set<Class<?>> classes = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            // isAssignableFrom方法用于判断superClass是否为cls的父类
+            if (superClass.isAssignableFrom(cls) && !superClass.equals(cls)) {
+                classes.add(cls);
+            }
+        }
+        return classes;
+    }
+
+    /**
+     * 读取基础包下类上使用某注解的类
+     * @param annotationClass
+     * @return
+     */
+    public static Set<Class<?>> getClassesByAnnotation(Class<? extends Annotation> annotationClass) {
+        Set<Class<?>> classes = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            if (cls.isAnnotationPresent(annotationClass)) {
+                classes.add(cls);
+            }
+        }
+        return classes;
     }
 
 }

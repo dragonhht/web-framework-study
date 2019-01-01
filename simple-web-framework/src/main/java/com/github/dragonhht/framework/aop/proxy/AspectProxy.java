@@ -15,7 +15,7 @@ public class AspectProxy implements Proxy {
 
     @Override
     public final Object doProxy(ProxyChain chain) throws Throwable {
-        Object result = null;
+        Object result;
 
         Class<?> cls = chain.getTargetClass();
         Method method = chain.getTargetMethod();
