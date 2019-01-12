@@ -1,9 +1,11 @@
 package com.github.dragonhht.framework.utils.helper;
 
+import com.github.dragonhht.framework.annotation.Service;
 import com.github.dragonhht.framework.aop.annotation.Aspect;
 import com.github.dragonhht.framework.aop.proxy.AspectProxy;
 import com.github.dragonhht.framework.aop.proxy.Proxy;
 import com.github.dragonhht.framework.aop.proxy.ProxyManager;
+import com.github.dragonhht.framework.tx.proxy.TransactionProxy;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.annotation.Annotation;
@@ -45,14 +47,8 @@ public final class AopHelper {
     // 获取定义增强的类和需要增强的类的Map
     private static Map<Class<?>, Set<Class<?>>> createProxyMap() {
         Map<Class<?>, Set<Class<?>>> proxyMap = new HashMap<>();
-        Set<Class<?>> proxyClasses = ClassHelper.getClassesBySyper(AspectProxy.class);
-        for (Class<?> cls : proxyClasses) {
-            if (cls.isAnnotationPresent(Aspect.class)) {
-                Aspect aspect = cls.getAnnotation(Aspect.class);
-                Set<Class<?>> targetClasses = createTargetClasses(aspect);
-                proxyMap.put(cls, targetClasses);
-            }
-        }
+        addAspectProxy(proxyMap);
+        addTransactionProxy(proxyMap);
         return proxyMap;
     }
 
@@ -77,4 +73,20 @@ public final class AopHelper {
         return targetMap;
     }
 
+    // 添加普通切面代理
+    private static void addAspectProxy(Map<Class<?>, Set<Class<?>>> proxyMap) {
+        Set<Class<?>> proxyClasses = ClassHelper.getClassesBySyper(AspectProxy.class);
+        proxyClasses.forEach(it -> {
+            if (it.isAnnotationPresent(Aspect.class)) {
+                Aspect aspect = it.getAnnotation(Aspect.class);
+                Set<Class<?>> targetClasses = createTargetClasses(aspect);
+                proxyMap.put(it, targetClasses);
+            }
+        });
+    }
+
+    private static void addTransactionProxy(Map<Class<?>, Set<Class<?>>> proxyMap) {
+        Set<Class<?>> serviceClasses = ClassHelper.getClassesByAnnotation(Service.class);
+        proxyMap.put(TransactionProxy.class, serviceClasses);
+    }
 }
