@@ -43,4 +43,13 @@ public final class ConfigHelper {
         return CONFIG.getValue("simple.web.framework.jsp_path");
     }
 
+    /**
+     * 通过键获取值.
+     * @param key
+     * @return
+     */
+    public static String getValue(String key) {
+        return CONFIG.getValue(key);
+    }
+
 }
