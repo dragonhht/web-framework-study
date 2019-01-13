@@ -28,4 +28,12 @@ public class Param {
         return params;
     }
 
+    /**
+     * 判断参数是否为空.
+     * @return
+     */
+    public boolean isEmpty() {
+        return params == null || params.size() == 0;
+    }
+
 }
