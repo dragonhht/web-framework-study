@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * 反射工具类.
@@ -61,6 +62,16 @@ public final class ReflectionUtil {
         } catch (IllegalAccessException e) {
             log.error("设置属性值失败", e);
         }
+    }
+
+    /**
+     * 获取方法的参数信息.
+     * @param method 方法
+     * @return 参数信息
+     */
+    public static Parameter[] getMethodParameters(Method method) {
+        Parameter parameter = method.getParameters()[0];
+        return method.getParameters();
     }
 
 }
