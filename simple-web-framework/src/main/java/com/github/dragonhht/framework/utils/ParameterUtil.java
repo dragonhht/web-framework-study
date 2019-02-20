@@ -1,8 +1,10 @@
 package com.github.dragonhht.framework.utils;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 方法参数工具类.
@@ -52,6 +54,22 @@ public final class ParameterUtil {
             }
         }
         return null;
+    }
+
+    public static Object[] getParamObj(Method method, List<Parameter> noDefaultParam) {
+        Parameter[] parameters = method.getParameters();
+        Object[] objects = new Object[parameters.length];
+        for (int i = 0; i < parameters.length; i++) {
+            Class cls = parameters[i].getType();
+            Object object = null;
+            try{
+                object = cls.newInstance();
+                objects[i] = object;
+            } catch (Exception e) {
+                objects[i] = parameters[i];
+            }
+        }
+        return objects;
     }
 
 }
